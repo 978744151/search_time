@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        span{
+            word-spacing:5px;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<input type="text" name="">
+<button type="submit">提交</button>
+<p></p>
+<script src="jquery.min.js"></script>
+<script>
+
+// var a = [1,2,3,4,5,0,8];
+// var min = Math.min.apply(null,a);
+// var min_index = a.indexOf(min);
+function sortNumber(a,b)
+{
+return b - a
+}
+var arr = [
+    {'徐州':1},
+    {'苏州':3},
+    {'南京':4},
+    {'东京':7},
+    {'黑镜':19},
+    {'日经':12},
+    {'绵州':33},
+]
+var array = []
+var city = []
+$('button').on('click',function(){
+    var val = $('input').val();
+    if(val == ''){
+        alert('不能输入为空')
+        return false
+    }
+
+    for(var i = 0; i<arr.length;i++){
+
+        for( k in arr[i] ){
+            if(k.indexOf(val)>-1){
+                arr[i][k]++
+            }
+            array.push(arr[i][k])
+        }
+    }
+})
+    for(var i = 0; i<arr.length;i++){
+         for( k in arr[i] ){
+            array.push(arr[i][k])
+         }
+    }
+        var new_arr = array.sort(sortNumber)
+        new_arr = new_arr.slice(0,4)
+        for(var i = 0; i<arr.length;i++){
+            var str = JSON.stringify(arr[i])
+            for(var j =0;j<new_arr.length;j++){
+                if(str.indexOf(new_arr[j]) > -1){
+                    new_str = JSON.parse(str)
+                    for(k in new_str){
+                        city.push(k)
+                    }
+                }
+            }
+        }
+
+// '<img src="/images/mine-person_0'+(i+1)+'.png">';
+var span ='';
+for(var i =0; i<city.length;i++){
+    span += '<span class="a'+i+'">'+city[i]+'</span>'
+
+    $('p').html(span)
+
+}
+
+</script>
+</body>
+</html>
